@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+
+# sending get request to google images
+query = "meme"
+URL = f"https://www.google.com/search?q={query}&source=lnms&tbm=isch"
+
+# header
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0;Win64) AppleWebkit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36'}
+
+# send the request
+response = requests.get(URL, headers=headers)
+
+# parse the html content
+soup = BeautifulSoup(response.content, 'html.parser')
+
+
+
+
+# extract the URLs
+images = soup.findAll('img')
+
+for url in images:
+    print(url)
